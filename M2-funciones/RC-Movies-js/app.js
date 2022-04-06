@@ -1,6 +1,6 @@
 const MOVIES = [];
-let OPTION = 0;
-let FLAG = true;
+let option = 0;
+let flag = true;
 const MENU = `
   Elija el número correspondiente a la
   acción que desea realizar:
@@ -19,10 +19,10 @@ const RESPONSES = {
 };
 
 const showMenu = function () {
-  OPTION = parseInt(prompt(MENU));
+  option = parseInt(prompt(MENU));
   let payload;
   console.clear();
-  switch (OPTION) {
+  switch (option) {
     case 1:
       request = prompt("Ingrese el nombre de la pelicula");
       payload = payloadNormalize(request);
@@ -42,7 +42,7 @@ const showMenu = function () {
       deleteOneMovieByName(payload);
       break;
     case 9:
-      FLAG = false;
+      flag = false;
       break;
     default:
       alert(RESPONSES.incorrectOp);
@@ -94,9 +94,9 @@ const deleteOneMovieByName = function (payload) {
     console.success(`${payload} is deleted`)
   }
 };
-const verifyIfMovieExist = function (payload) {
+const verifyIfMovieExist = function (movieName) {
   const movieExist = MOVIES.find(function (movie) {
-    return movie === payload;
+    return movie === movieName;
   });
   return movieExist;
 };
@@ -105,6 +105,6 @@ const payloadNormalize = function (movieName) {
   return movieNameNormalized;
 };
 
-while (FLAG) {
+while (flag) {
   showMenu();
 }
